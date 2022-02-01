@@ -23,14 +23,15 @@ import random
 
 
 # Image importation and preprocessing 
+plantTypes = ["aglonema","calathea"]
 
 # training data
 def makingDataSets(folderLocation):
     dataSetDirectory = folderLocation
 
-    plantTypes = ["aglonema","calathea"]
+    #plantTypes = ["aglonema","calathea"]
 
-    sizeOfImage = 250
+    sizeOfImage = 50
 
     training_data = []
 
@@ -42,7 +43,7 @@ def makingDataSets(folderLocation):
 
             for img in tqdm(os.listdir(path)): 
                 try:
-                    img_array = cv2.imread(os.path.join(path,img))  
+                    img_array = cv2.imread(os.path.join(path,img, ))  
                     new_array = cv2.resize(img_array, (sizeOfImage, sizeOfImage))  
                     training_data.append([new_array, plantTypeID])  
                 except Exception as e:  
@@ -59,9 +60,9 @@ def makingDataSets(folderLocation):
         X.append(features)
         y.append(label)
 
-    print(X[0].reshape(-1, sizeOfImage, sizeOfImage, 3))
+    #print(X[0].reshape(-1, sizeOfImage, sizeOfImage, 1))
 
-    X = np.array(X).reshape(-1, sizeOfImage , sizeOfImage, 3)
+    X = np.array(X).reshape(-1, sizeOfImage , sizeOfImage, 1)
     y = X = np.array(y)
 
     return X,y
@@ -69,40 +70,54 @@ def makingDataSets(folderLocation):
 trainingDataSet = "prototypeHousePlantTrainingImages/training"
 trainingX, trainingY = makingDataSets(trainingDataSet)
 
-validationDataSet = "prototypeHousePlantTrainingImages/validation"
-validationX, validationY = makingDataSets(validationDataSet)
+
+#validationDataSet = "prototypeHousePlantTrainingImages/validation"
+#validationX, validationY = makingDataSets(validationDataSet)
 
 #train_data = tf.data.Dataset.from_tensor_slices((trainingX, trainingY))
 #valid_data = tf.data.Dataset.from_tensor_slices((validationX, validationY))
 
 
-# Model
+# Model 
 
+#normalised pixel values
+trainingX = trainingX/255.0
 
 model = Sequential()
 
-model.add(Conv2D(256, (3, 3), input_shape=(256,256,3)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(50, 50, 1)))
+model.add(MaxPooling2D((2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D((2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
 
-model.add(Conv2D(256, (3, 3)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-
-model.add(Conv2D(256, (3, 3)))
+model.summary()
 
 model.add(Flatten())  # this converts our 3D feature maps to 1D feature vectors
 model.add(Dense(64, activation='relu'))
 model.add(Dense(10))
 model.add(Activation('sigmoid'))
 
-model.compile(loss='binary_crossentropy',
-              optimizer='adam',
+
+model.summary()
+
+
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
+
+
+model.fit(trainingX, trainingY, epochs=5, validation_split=0.2)
+
+
+#history = model.fit(trainingX, trainingY, epochs=10, 
+#                    validation_data=(validationX, validationY)) # validation data buggered
+
+#history = model.fit(trainingX, trainingY, epochs=10, )
 
 #model.fit(X, y, batch_size=10, epochs=5, validation_split=0.2)
 #model.fit(train_data, epochs=5, validation_data=valid_data)
 
-model.fit(trainingX, trainingY, epochs=5, validation_data=(validationX, validationY))
+#model.fit(trainingX, trainingY, epochs=5, validation_data=(validationX, validationY)) # weird bug here
 
 #porting the module to tensorflow lite

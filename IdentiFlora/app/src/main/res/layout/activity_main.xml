@@ -4,28 +4,178 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#011910"
+    android:gravity="center"
     tools:context=".MainActivity">
 
+
     <ImageButton
-        android:id="@+id/uploadImageButton"
-        android:layout_width="263dp"
-        android:layout_height="259dp"
+        android:id="@+id/uploadPlantImageButton"
+        android:layout_width="271dp"
+        android:layout_height="320dp"
+        android:background="#202121"
+        android:onClick="openCamera"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.197"
-        app:srcCompat="@drawable/ic_launcher_foreground"
+        app:layout_constraintVertical_bias="0.104"
+        app:srcCompat="@drawable/app_icon_2"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/plantNameTextFields"
-        android:layout_width="262dp"
-        android:layout_height="42dp"
-        android:text="TextView"
+        android:id="@+id/plantNameText"
+        android:layout_width="271dp"
+        android:layout_height="34dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="Please Upload an image of your plant."
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uploadImageButton"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintTop_toBottomOf="@+id/uploadPlantImageButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TableLayout
+        android:layout_width="386dp"
+        android:layout_height="246dp"
+        android:stretchColumns="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plantNameText"
+        app:layout_constraintVertical_bias="0.59">
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Care information"
+                android:textColor="@color/white"
+                android:background="@color/maxGreen"/>
+                <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="@color/white"
+                android:background="@color/maxGreen"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Plant Name:"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_column="2"
+                android:gravity="right"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="@color/white" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Plant Description:"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="@color/white" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Watering:"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="@color/white" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Light Levels:"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="@color/white" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Ideal Temperature:"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="@color/white" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Plant Description:"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="@color/white" />
+        </TableRow>
+
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Special Information:"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text=""
+                android:textColor="@color/white" />
+        </TableRow>
+
+
+    </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

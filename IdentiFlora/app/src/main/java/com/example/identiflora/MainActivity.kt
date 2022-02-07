@@ -5,8 +5,8 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.Matrix
 import android.graphics.drawable.ColorDrawable
+import android.media.ExifInterface
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -33,10 +33,6 @@ class MainActivity : AppCompatActivity() {
         //Changes colour of Action bar (This seems to be the only way of doing this)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#4C9A2A")))
 
-
-        //supportActionBar!!.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
-        //supportActionBar!!.setCustomView(R.layout.actionbar_layout)
-
     }
 
     //Opens Camera on button
@@ -61,7 +57,6 @@ class MainActivity : AppCompatActivity() {
     private fun getPhotoFile(fileName: String): File {
         val storageLocation = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(fileName,".jpg", storageLocation)
-
     }
 
     //
@@ -69,15 +64,31 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
 
-            //val takenImage = data?.extras?.get("data") as Bitmap
+            //Get photos rotation (when it was taken for) for display purposes
+
+            val exifForPlantImage = ExifInterface(plantPhotoFile.absolutePath)
+            val orientationOfCamera: Int = exifForPlantImage.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+
+            var angle = 0
+
+            when (orientationOfCamera) {
+                ExifInterface.ORIENTATION_ROTATE_90 -> {
+                    angle = 90;
+                }
+                ExifInterface.ORIENTATION_ROTATE_180 -> {
+                    angle = 180;
+                }
+                ExifInterface.ORIENTATION_ROTATE_270 -> {
+                    angle = 270;
+                }
+            }
+
             val takenImage = BitmapFactory.decodeFile(plantPhotoFile.absolutePath)
-
-
 
             //sets button image as picture, rescaling it and rotating for display purposes
             val imageButtonID = findViewById<ImageButton>(R.id.uploadPlantImageButton)
             imageButtonID.setImageBitmap(takenImage)
-            imageButtonID.rotation = 90f
+            imageButtonID.rotation = angle.toFloat()
 
 
             //change instruction text to better reflect what the user is doing in the appication

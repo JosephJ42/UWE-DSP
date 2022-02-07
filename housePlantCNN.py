@@ -102,7 +102,7 @@ model.add(Activation('sigmoid'))
 model.summary()
 
 
-model.compile(optimizer='adam',
+model.compile(optimizer='adamax',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 

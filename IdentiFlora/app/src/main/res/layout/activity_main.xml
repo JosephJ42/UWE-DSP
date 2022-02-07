@@ -16,6 +16,7 @@
         android:background="#202121"
         android:onClick="openCamera"
         android:scaleType="fitCenter"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"

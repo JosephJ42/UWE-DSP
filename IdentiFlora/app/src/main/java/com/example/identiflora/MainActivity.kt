@@ -73,13 +73,13 @@ class MainActivity : AppCompatActivity() {
 
             when (orientationOfCamera) {
                 ExifInterface.ORIENTATION_ROTATE_90 -> {
-                    angle = 90;
+                    angle = 90
                 }
                 ExifInterface.ORIENTATION_ROTATE_180 -> {
-                    angle = 180;
+                    angle = 180
                 }
                 ExifInterface.ORIENTATION_ROTATE_270 -> {
-                    angle = 270;
+                    angle = 270
                 }
             }
 

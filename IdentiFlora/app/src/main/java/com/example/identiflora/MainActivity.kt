@@ -15,6 +15,12 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.example.identiflora.ml.IdentiFloraCNNModel
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.image.ImageProcessor
+import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.image.ops.ResizeOp
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
 
 
@@ -59,6 +65,27 @@ class MainActivity : AppCompatActivity() {
         return File.createTempFile(fileName,".jpg", storageLocation)
     }
 
+
+    // Takes the captures image and passes it through the CNN, returning the name of the plant
+    // that the CNN believes the image contains.
+    private fun getCNNResults(tensorImage:TensorImage){
+
+        val model = IdentiFloraCNNModel.newInstance(this)
+
+        // Creates inputs for reference.
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 180, 180, 3), DataType.FLOAT32)
+        inputFeature0.loadBuffer(byteBuffer)
+
+        // Runs model inference and gets result.
+        val outputs = model.process(inputFeature0)
+        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+        // Releases model resources if no longer used.
+        model.close()
+
+
+    }
+
     //
     override fun onActivityResult(requestCode:Int, resultCode:Int, data:Intent?){
         super.onActivityResult(requestCode, resultCode, data)
@@ -96,6 +123,9 @@ class MainActivity : AppCompatActivity() {
             imageCaptionText.setText("Tap the image again to upload a new plant")
 
             //passed taken image to the CNN
+
+            //val tensorImage = TensorImage.fromBitmap(takenImage)
+            //val plantName = getCNNResults(tensorImage)
 
         }
     }

@@ -3,6 +3,7 @@ package com.example.identiflora
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,6 +14,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.example.identiflora.ml.IdentiFloraCNNModel
@@ -22,6 +24,7 @@ import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
+import java.nio.ByteBuffer
 
 
 //Constants
@@ -68,22 +71,19 @@ class MainActivity : AppCompatActivity() {
 
     // Takes the captures image and passes it through the CNN, returning the name of the plant
     // that the CNN believes the image contains.
-    private fun getCNNResults(tensorImage:TensorImage){
+    private fun getCNNResults(takenImage: Bitmap) {
 
         val model = IdentiFloraCNNModel.newInstance(this)
 
         // Creates inputs for reference.
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 180, 180, 3), DataType.FLOAT32)
-        inputFeature0.loadBuffer(byteBuffer)
+        val image = TensorImage.fromBitmap(takenImage)
 
         // Runs model inference and gets result.
-        val outputs = model.process(inputFeature0)
-        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+        val outputs = model.process(image)
+        val probability = outputs.probabilityAsCategoryList
 
         // Releases model resources if no longer used.
         model.close()
-
-
     }
 
     //
@@ -123,10 +123,11 @@ class MainActivity : AppCompatActivity() {
             imageCaptionText.setText("Tap the image again to upload a new plant")
 
             //passed taken image to the CNN
+            val plantNameID = getCNNResults(takenImage)
 
-            //val tensorImage = TensorImage.fromBitmap(takenImage)
-            //val plantName = getCNNResults(tensorImage)
 
+            //val plantName= findViewById<TextView>(R.id.plantNameColumnText)
+            //plantName.setText(indexArray)
         }
     }
 

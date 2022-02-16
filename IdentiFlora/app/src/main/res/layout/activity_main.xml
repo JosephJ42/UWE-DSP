@@ -78,6 +78,7 @@
                 android:textColor="@color/white" />
 
             <TextView
+                android:id = "@+id/plantNameColumnText"
                 android:layout_column="2"
                 android:gravity="right"
                 android:padding="3dip"

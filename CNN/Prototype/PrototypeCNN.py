@@ -1,7 +1,5 @@
 #
-#
-#
-#
+
 
 #Tensorflow related Imports
 import tensorflow as tf

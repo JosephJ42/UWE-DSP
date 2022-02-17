@@ -18,6 +18,7 @@ with open(savedTFLiteModelLocation, 'wb') as f:
   f.write(tflite_model)
 
 
+
 # add meta data
 
 from tflite_support import flatbuffers
@@ -38,7 +39,7 @@ output_meta = _metadata_fb.TensorMetadataT()
 
 input_meta.name = "image"
 input_meta.description = (  "Input image to be classified. The expected image is {0} x {1}, with three channels (red, blue, and green) per pixel."
-                          "Each value in the tensor is a single byte between 0 and 180.".format(160, 160))
+                          "Each value in the tensor is a single byte between 0 and 180.".format(180, 180))
 
 input_meta.content = _metadata_fb.ContentT()
 input_meta.content.contentProperties = _metadata_fb.ImagePropertiesT()
@@ -94,3 +95,4 @@ populator = _metadata.MetadataPopulator.with_model_file("D:/UWE-DSP/CNN/Prototyp
 populator.load_metadata_buffer(metadata_buf)
 populator.load_associated_files(["D:/UWE-DSP/CNN/Prototype/labels.txt"])
 populator.populate()
+

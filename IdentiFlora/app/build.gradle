@@ -32,6 +32,10 @@ android {
     buildFeatures {
         mlModelBinding true
     }
+    aaptOptions {
+        noCompress "identiFloraCNNModel.tflite"
+    }
+
 }
 
 dependencies {

@@ -14,17 +14,12 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.example.identiflora.ml.IdentiFloraCNNModel
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.image.ops.ResizeOp
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
-import java.nio.ByteBuffer
+
 
 
 //Constants
@@ -71,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     // Takes the captures image and passes it through the CNN, returning the name of the plant
     // that the CNN believes the image contains.
-    private fun getCNNResults(takenImage: Bitmap) {
+    private fun getCNNResults(takenImage: Bitmap): String {
 
         val model = IdentiFloraCNNModel.newInstance(this)
 
@@ -80,10 +75,15 @@ class MainActivity : AppCompatActivity() {
 
         // Runs model inference and gets result.
         val outputs = model.process(image)
-        val probability = outputs.probabilityAsCategoryList
+        val probability = outputs.probabilityAsCategoryList.apply { sortByDescending { it.score } }.elementAt(0)
+
+
+        // gets plants label/id from output
+        var plantLabel = probability.label
 
         // Releases model resources if no longer used.
         model.close()
+        return plantLabel
     }
 
     //
@@ -117,17 +117,18 @@ class MainActivity : AppCompatActivity() {
             imageButtonID.setImageBitmap(takenImage)
             imageButtonID.rotation = angle.toFloat()
 
-
             //change instruction text to better reflect what the user is doing in the appication
             val imageCaptionText= findViewById<TextView>(R.id.plantNameText)
-            imageCaptionText.setText("Tap the image again to upload a new plant")
+            imageCaptionText.text = "Tap the image again to upload a new plant"
 
-            //passed taken image to the CNN
-            val plantNameID = getCNNResults(takenImage)
+            /*
+           //passed taken image to the CNN, and determin the plants identify
+           val plantNameID = getCNNResults(takenImage)
 
+           val plantName= findViewById<TextView>(R.id.plantNameColumnText)
+           plantName.text = plantNameID
 
-            //val plantName= findViewById<TextView>(R.id.plantNameColumnText)
-            //plantName.setText(indexArray)
+            */
         }
     }
 

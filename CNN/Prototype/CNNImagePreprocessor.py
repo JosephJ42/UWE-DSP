@@ -1,12 +1,6 @@
-#House Plant Identification CNN
-#
-#
-
-#Tensorflow related Imports
-
+#House Plant Identification CNN dataset preprocessor 
 
 #Misc imports
-
 import matplotlib.pyplot as plt
 import cv2
 import os
@@ -18,8 +12,6 @@ trainingDataSet = "D:/UWE-DSP/CNN/Prototype/prototypeHousePlantTrainingImages/tr
 plantTypes = ["aglonema","calathea"]
 sizeOfImage = 180
 trainingData = []
-
-
 
 def createTrainingData():
 

@@ -16,7 +16,8 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import com.example.identiflora.ml.IdentiFloraCNNModel
+//import com.example.identiflora.ml.IdentiFloraCNNModel
+import com.example.identiflora.ml.Model
 import org.tensorflow.lite.support.image.TensorImage
 import java.io.File
 
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
     // that the CNN believes the image contains.
     private fun getCNNResults(takenImage: Bitmap): String {
 
-        val model = IdentiFloraCNNModel.newInstance(this)
+        val model = Model.newInstance(this)
 
         // Creates inputs for reference.
         val image = TensorImage.fromBitmap(takenImage)
@@ -77,12 +78,29 @@ class MainActivity : AppCompatActivity() {
         val outputs = model.process(image)
         val probability = outputs.probabilityAsCategoryList.apply { sortByDescending { it.score } }.elementAt(0)
 
-
-        // gets plants label/id from output
         var plantLabel = probability.label
 
         // Releases model resources if no longer used.
         model.close()
+
+
+
+        //val CNNmodel = model.newInstance(this)
+
+        // Creates inputs for reference.
+        //val image = TensorImage.fromBitmap(takenImage)
+
+        // Runs model inference and gets result.
+        //val outputs = CNNmodel.process(image)
+        //val probability = outputs.probabilityAsCategoryList.apply { sortByDescending { it.score } }.elementAt(0)
+
+
+        // gets plants label/id from output
+        //var plantLabel = probability.label
+
+        // Releases model resources if no longer used.
+        //model.close()
+
         return plantLabel
     }
 
@@ -121,14 +139,14 @@ class MainActivity : AppCompatActivity() {
             val imageCaptionText= findViewById<TextView>(R.id.plantNameText)
             imageCaptionText.text = "Tap the image again to upload a new plant"
 
-            /*
+
            //passed taken image to the CNN, and determin the plants identify
            val plantNameID = getCNNResults(takenImage)
 
            val plantName= findViewById<TextView>(R.id.plantNameColumnText)
            plantName.text = plantNameID
 
-            */
+
         }
     }
 

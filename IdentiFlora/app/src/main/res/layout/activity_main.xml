@@ -95,6 +95,7 @@
                 android:textColor="@color/white" />
 
             <TextView
+                android:id = "@+id/plantDescriptionColumnText"
                 android:gravity="right"
                 android:padding="3dip"
                 android:text=""
@@ -110,6 +111,7 @@
                 android:textColor="@color/white" />
 
             <TextView
+                android:id = "@+id/wateringColumnText"
                 android:gravity="right"
                 android:padding="3dip"
                 android:text=""
@@ -125,6 +127,7 @@
                 android:textColor="@color/white" />
 
             <TextView
+                android:id = "@+id/lightLevelsColumnText"
                 android:gravity="right"
                 android:padding="3dip"
                 android:text=""
@@ -140,6 +143,7 @@
                 android:textColor="@color/white" />
 
             <TextView
+                android:id = "@+id/temperatureColumnText"
                 android:gravity="right"
                 android:padding="3dip"
                 android:text=""
@@ -155,6 +159,7 @@
                 android:textColor="@color/white" />
 
             <TextView
+                android:id = "@+id/humidityColumnText"
                 android:gravity="right"
                 android:padding="3dip"
                 android:text=""
@@ -170,6 +175,7 @@
                 android:textColor="@color/white" />
 
             <TextView
+                android:id = "@+id/feedingColumnText"
                 android:gravity="right"
                 android:padding="3dip"
                 android:text=""
@@ -185,6 +191,7 @@
                 android:textColor="@color/white" />
 
             <TextView
+                android:id = "@+id/specialInfoColumnText"
                 android:gravity="right"
                 android:padding="3dip"
                 android:text=""

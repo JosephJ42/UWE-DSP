@@ -1,8 +1,10 @@
 package com.example.identiflora
 
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -16,7 +18,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-//import com.example.identiflora.ml.IdentiFloraCNNModel
 import com.example.identiflora.ml.Model
 import org.tensorflow.lite.support.image.TensorImage
 import java.io.File
@@ -105,6 +106,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // handles
+    @SuppressLint("Range")
     override fun onActivityResult(requestCode:Int, resultCode:Int, data:Intent?){
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
@@ -146,14 +148,56 @@ class MainActivity : AppCompatActivity() {
            val plantName= findViewById<TextView>(R.id.plantNameColumnText)
            plantName.text = plantNameID
 
+            // setting up the relevent IDs
+            val watering= findViewById<TextView>(R.id.wateringColumnText)
+            val light = findViewById<TextView>(R.id.lightLevelsColumnText)
+            val temp = findViewById<TextView>(R.id.temperatureColumnText)
+            val humidity = findViewById<TextView>(R.id.humidityColumnText)
+            val feeding = findViewById<TextView>(R.id.feedingColumnText)
+            val specialInfo = findViewById<TextView>(R.id.specialInfoColumnText)
+
+            /*
+
+            // pull information from database based the CNNs output
+            var helper = PlantDatabaseHandler (applicationContext)
+            var db = helper.openDataBase()
+            val cursor = helper.getPlantInforFromName(db)
+
+            cursor!!.moveToFirst()
+
+            if(cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.idCol)).equals(plantNameID)){
+
+                watering.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.waterCol))
+                light.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.lightCol))
+                temp.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.tempCol))
+                humidity.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.humidityCol))
+                feeding.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.feedingCol))
+                specialInfo.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.specialInfoCol))
+
+            }
+
+            while(cursor.moveToNext()){
+
+                if(cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.idCol)).equals(plantNameID)){
+
+                    watering.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.waterCol))
+                    light.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.lightCol))
+                    temp.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.tempCol))
+                    humidity.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.humidityCol))
+                    feeding.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.feedingCol))
+                    specialInfo.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.specialInfoCol))
+                    break
+                }
+            }
+
+             */
 
         }
     }
 
-
-
-
 }
+
+
 
 
 

@@ -15,14 +15,14 @@
         android:layout_height="320dp"
         android:background="#202121"
         android:onClick="openCamera"
-        android:scaleType="fitCenter"
         android:orientation="vertical"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104"
+        app:layout_constraintVertical_bias="0.063"
         app:srcCompat="@drawable/app_icon_2"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -36,33 +36,40 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uploadPlantImageButton"
         app:layout_constraintVertical_bias="0.0" />
 
     <TableLayout
-        android:layout_width="386dp"
-        android:layout_height="258dp"
-        android:stretchColumns="1"
+        android:layout_width="390dp"
+        android:layout_height="300dp"
+        android:padding="1dip"
+        android:stretchColumns="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plantNameText"
-        app:layout_constraintVertical_bias="0.59">
+        app:layout_constraintVertical_bias="0.686">
 
         <TableRow>
 
             <TextView
+                android:layout_width="142dp"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:autoSizeTextType="uniform"
                 android:background="@color/maxGreen"
                 android:padding="3dip"
                 android:text="Care information"
                 android:textColor="@color/white" />
 
             <TextView
+                android:layout_width="224dp"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:autoSizeTextType="uniform"
                 android:background="@color/maxGreen"
                 android:padding="3dip"
                 android:text=""
@@ -72,15 +79,23 @@
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
                 android:padding="3dip"
                 android:text="Plant Name:"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id = "@+id/plantNameColumnText"
+                android:id="@+id/plantNameColumnText"
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:gravity="right"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text=""
                 android:textColor="@color/white" />
@@ -89,14 +104,25 @@
         <TableRow>
 
             <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
                 android:padding="3dip"
+                android:gravity="center_horizontal"
                 android:text="Plant Description:"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id = "@+id/plantDescriptionColumnText"
-                android:gravity="right"
+                android:id="@+id/plantDescriptionColumnText"
+                android:hyphenationFrequency="normal"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text=""
                 android:textColor="@color/white" />
@@ -105,14 +131,22 @@
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
                 android:padding="3dip"
                 android:text="Watering:"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id = "@+id/wateringColumnText"
-                android:gravity="right"
+                android:id="@+id/wateringColumnText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text=""
                 android:textColor="@color/white" />
@@ -121,14 +155,22 @@
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
                 android:padding="3dip"
                 android:text="Light Levels:"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id = "@+id/lightLevelsColumnText"
-                android:gravity="right"
+                android:id="@+id/lightLevelsColumnText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text=""
                 android:textColor="@color/white" />
@@ -137,14 +179,22 @@
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
                 android:padding="3dip"
                 android:text="Ideal Temperature:"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id = "@+id/temperatureColumnText"
-                android:gravity="right"
+                android:id="@+id/temperatureColumnText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text=""
                 android:textColor="@color/white" />
@@ -153,14 +203,22 @@
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
                 android:padding="3dip"
                 android:text="Ideal Humidity:"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id = "@+id/humidityColumnText"
-                android:gravity="right"
+                android:id="@+id/humidityColumnText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text=""
                 android:textColor="@color/white" />
@@ -169,14 +227,22 @@
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
                 android:padding="3dip"
-                android:text="Feeding and Fertilizing:"
+                android:text="Fertilizing:"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id = "@+id/feedingColumnText"
-                android:gravity="right"
+                android:id="@+id/feedingColumnText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text=""
                 android:textColor="@color/white" />
@@ -185,14 +251,22 @@
         <TableRow>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
                 android:padding="3dip"
                 android:text="Special Information:"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id = "@+id/specialInfoColumnText"
-                android:gravity="right"
+                android:id="@+id/specialInfoColumnText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:autoSizeTextType="uniform"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text=""
                 android:textColor="@color/white" />

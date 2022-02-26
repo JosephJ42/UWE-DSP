@@ -149,6 +149,7 @@ class MainActivity : AppCompatActivity() {
            plantName.text = plantNameID
 
             // setting up the relevent IDs
+            val descrtiption = findViewById<TextView>(R.id.plantDescriptionColumnText)
             val watering= findViewById<TextView>(R.id.wateringColumnText)
             val light = findViewById<TextView>(R.id.lightLevelsColumnText)
             val temp = findViewById<TextView>(R.id.temperatureColumnText)
@@ -167,6 +168,7 @@ class MainActivity : AppCompatActivity() {
 
             if(cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.idCol)).equals(plantNameID)){
 
+                descrtiption.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.descriptionCol))
                 watering.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.waterCol))
                 light.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.lightCol))
                 temp.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.tempCol))
@@ -180,6 +182,7 @@ class MainActivity : AppCompatActivity() {
 
                 if(cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.idCol)).equals(plantNameID)){
 
+                    descrtiption.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.descriptionCol))
                     watering.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.waterCol))
                     light.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.lightCol))
                     temp.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.tempCol))
@@ -189,6 +192,11 @@ class MainActivity : AppCompatActivity() {
                     break
                 }
             }
+
+            //cursor.close()
+
+
+
 
 
 

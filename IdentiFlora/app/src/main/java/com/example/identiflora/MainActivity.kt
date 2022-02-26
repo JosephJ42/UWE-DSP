@@ -156,12 +156,12 @@ class MainActivity : AppCompatActivity() {
             val feeding = findViewById<TextView>(R.id.feedingColumnText)
             val specialInfo = findViewById<TextView>(R.id.specialInfoColumnText)
 
-            /*
+
 
             // pull information from database based the CNNs output
             var helper = PlantDatabaseHandler (applicationContext)
             var db = helper.openDataBase()
-            val cursor = helper.getPlantInforFromName(db)
+            val cursor = db?.rawQuery("SELECT * From plantInfo", null);
 
             cursor!!.moveToFirst()
 
@@ -190,7 +190,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-             */
+
 
         }
     }

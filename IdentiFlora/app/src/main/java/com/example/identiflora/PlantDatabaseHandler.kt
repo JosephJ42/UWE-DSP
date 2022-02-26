@@ -5,6 +5,7 @@ import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
@@ -14,6 +15,7 @@ class PlantDatabaseHandler (context:Context): SQLiteOpenHelper(context, "plantIn
     var dbName = "plantInformation.db"
     var dbLocation = context.getDatabasePath(dbName).absolutePath
     private var DataBase: SQLiteDatabase? = null
+    var context = context
 
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -22,12 +24,43 @@ class PlantDatabaseHandler (context:Context): SQLiteOpenHelper(context, "plantIn
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
 
+    override fun onOpen(db: SQLiteDatabase?) {
+        super.onOpen(db)
+    }
+
 
     // Open the database, so we can read from it.
     @Throws(SQLException::class)
     fun openDataBase(): SQLiteDatabase? {
-        DataBase = SQLiteDatabase.openDatabase(dbLocation, null, SQLiteDatabase.CREATE_IF_NECESSARY)
+
+        this.readableDatabase
+        try {
+            copydatabase()
+        } catch (e: IOException) {
+            throw Error("Error copying database")
+        }
+
+
+        DataBase = SQLiteDatabase.openDatabase(dbLocation, null, SQLiteDatabase.OPEN_READWRITE)
         return DataBase
+    }
+
+    @Throws(IOException::class)
+    private fun copydatabase() {
+
+        val `is` = context.assets.open(dbName)
+        val os = FileOutputStream(dbLocation)
+
+        val buffer = ByteArray(1024)
+        while (`is`.read(buffer) > 0) {
+            os.write(buffer)
+            Log.d("#DB", "writing>>")
+        }
+
+        os.flush()
+        os.close()
+        `is`.close()
+        Log.d("#DB", "completed..")
     }
 
     fun getPlantInforFromName(db: SQLiteDatabase?): Cursor? {

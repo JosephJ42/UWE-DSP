@@ -1,4 +1,11 @@
 aglonema
+aloe_vera
 calathea
+chlorophytum_comosum
+crassula_ovata
+dracaena_angolensi
+dracaena_warneckii
+fittonia_albivenis
 janda_bolong
 keladi
+schefflera

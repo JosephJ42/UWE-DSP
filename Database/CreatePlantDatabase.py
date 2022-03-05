@@ -5,7 +5,6 @@ from matplotlib.pyplot import connect
 #
 
 connection = sqlite3.connect("plantInformation.db")
-
 cursor = connection.cursor()
 
 createTable1Command = """CREATE TABLE IF NOT EXISTS

@@ -12,9 +12,10 @@ from tflite_model_maker.image_classifier import DataLoader
 training_data_path = "D:/UWE-DSP/CNN/Full Scale CNN/training"
 
 data = DataLoader.from_folder(training_data_path)
-train_data, test_data = data.split(0.9)
+train_data, rest_data = data.split(0.8)
+validation_data, test_data = rest_data.split(0.5)
 
-model = image_classifier.create(train_data, epochs=10)
+model = image_classifier.create(train_data, validation_data=validation_data, epochs=15)
 
 loss, accuracy = model.evaluate(test_data)
 

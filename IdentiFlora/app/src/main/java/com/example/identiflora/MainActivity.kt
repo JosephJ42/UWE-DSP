@@ -4,7 +4,6 @@ package com.example.identiflora
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //Opens Camera on button
+    //Opens Camera on button tap
     fun openCamera(view: View) {
 
         plantPhotoFile = getPhotoFile(fileName)

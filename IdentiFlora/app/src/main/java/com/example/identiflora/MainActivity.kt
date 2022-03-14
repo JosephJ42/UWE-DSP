@@ -195,19 +195,6 @@ class MainActivity : AppCompatActivity() {
 
             //cursor.close()
 
-
-
-
-
-
         }
     }
-
 }
-
-
-
-
-
-
-

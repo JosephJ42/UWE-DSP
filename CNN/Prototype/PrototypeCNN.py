@@ -66,7 +66,7 @@ model.compile(optimizer='adamax',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
-history = model.fit(trainingX, y, epochs=50, validation_split=0.2)
+history = model.fit(trainingX, y, epochs=20, validation_split=0.2)
 
 plot_model(model, to_file='D:/UWE-DSP/CNN/Prototype/model.png', show_shapes=True)
 

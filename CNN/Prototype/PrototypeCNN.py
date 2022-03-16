@@ -1,5 +1,3 @@
-#
-
 #Tensorflow related Imports
 import tensorflow as tf
 from tensorflow.keras.datasets import cifar10
@@ -70,4 +68,4 @@ history = model.fit(trainingX, y, epochs=20, validation_split=0.2)
 
 plot_model(model, to_file='D:/UWE-DSP/CNN/Prototype/model.png', show_shapes=True)
 
-model.save("D:/UWE-DSP/CNN/Prototype/identiFloraCNNModel.h5")
+#model.save("D:/UWE-DSP/CNN/Prototype/identiFloraCNNModel.h5")

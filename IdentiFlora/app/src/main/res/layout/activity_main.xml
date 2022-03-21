@@ -11,9 +11,10 @@
 
     <ImageButton
         android:id="@+id/uploadPlantImageButton"
-        android:layout_width="271dp"
-        android:layout_height="320dp"
+        android:layout_width="318dp"
+        android:layout_height="314dp"
         android:background="#202121"
+        android:contentDescription="TODO"
         android:onClick="openCamera"
         android:orientation="vertical"
         android:scaleType="fitCenter"
@@ -24,13 +25,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.063"
         app:srcCompat="@drawable/app_icon_2"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:contentDescription="TODO" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/plantNameText"
-        android:layout_width="271dp"
-        android:layout_height="34dp"
+        android:layout_width="312dp"
+        android:layout_height="29dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:text="Please upload an image of your plant."
@@ -43,10 +43,15 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TableLayout
-        android:layout_width="390dp"
-        android:layout_height="300dp"
-        android:padding="1dip"
-        android:stretchColumns="2"
+        android:layout_width="404dp"
+        android:layout_height="330dp"
+        android:autoSizeTextType="uniform"
+        android:ellipsize="end"
+        android:maxLines="10"
+        android:padding="2dip"
+        android:scrollHorizontally="true"
+        android:stretchColumns="1,2"
+        android:shrinkColumns="2,true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
@@ -54,27 +59,21 @@
         app:layout_constraintTop_toBottomOf="@+id/plantNameText"
         app:layout_constraintVertical_bias="0.686">
 
-        <TableRow>
+        <TableRow
+            android:background="@color/maxGreen">
 
             <TextView
-                android:layout_width="142dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:autoSizeTextType="uniform"
-                android:background="@color/maxGreen"
                 android:padding="3dip"
                 android:text="Care information"
                 android:textColor="@color/white" />
 
-            <TextView
-                android:layout_width="224dp"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:autoSizeTextType="uniform"
-                android:background="@color/maxGreen"
-                android:padding="3dip"
-                android:text=""
-                android:textColor="@color/white" />
+
+
+
         </TableRow>
 
         <TableRow>
@@ -91,7 +90,7 @@
 
             <TextView
                 android:id="@+id/plantNameColumnText"
-                android:layout_width="34dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
                 android:layout_gravity="fill"
@@ -102,7 +101,8 @@
                 android:textColor="@color/white" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:autoSizeTextType="uniform">
 
             <TextView
 
@@ -111,19 +111,19 @@
                 android:layout_column="1"
                 android:layout_gravity="fill"
                 android:autoSizeTextType="uniform"
-                android:padding="3dip"
                 android:gravity="center_horizontal"
+                android:padding="3dip"
                 android:text="Plant Description:"
                 android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/plantDescriptionColumnText"
-                android:hyphenationFrequency="normal"
-                android:layout_width="55dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill"
                 android:autoSizeTextType="uniform"
                 android:gravity="left"
+                android:hyphenationFrequency="normal"
                 android:padding="3dip"
                 android:text=""
                 android:textColor="@color/white" />
@@ -243,8 +243,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="fill"
                 android:autoSizeTextType="uniform"
+                android:ellipsize="end"
                 android:gravity="left"
+                android:maxLines="10"
                 android:padding="3dip"
+                android:scrollHorizontally="true"
                 android:text=""
                 android:textColor="@color/white" />
         </TableRow>

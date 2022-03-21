@@ -1,11 +1,9 @@
 #House Plant Identification CNN dataset preprocessor 
 
 #Misc imports
-import matplotlib.pyplot as plt
 import cv2
 import os
 import numpy as np
-from tqdm import tqdm
 import random
 
 trainingDataSet = "D:/UWE-DSP/CNN/Prototype/prototypeHousePlantTrainingImages/training"
@@ -32,16 +30,10 @@ def createTrainingData():
 
                 trainingData.append([resizedImageArray, plantTypeID])
 
-                #plt.imshow(imgArray)
-                #plt.show()
-                #plt.imshow(resizedImageArray)
-                #plt.show()
-
             except Exception as e:  
                     pass   
 
-          
-          
+                    
 def makingDataSets():
 
     createTrainingData()

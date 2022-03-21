@@ -147,8 +147,8 @@ class MainActivity : AppCompatActivity() {
            val plantName= findViewById<TextView>(R.id.plantNameColumnText)
            plantName.text = plantNameID
 
-            // setting up the relevent IDs
-            val descrtiption = findViewById<TextView>(R.id.plantDescriptionColumnText)
+            // setting up the relevant display table IDs
+            val description = findViewById<TextView>(R.id.plantDescriptionColumnText)
             val watering= findViewById<TextView>(R.id.wateringColumnText)
             val light = findViewById<TextView>(R.id.lightLevelsColumnText)
             val temp = findViewById<TextView>(R.id.temperatureColumnText)
@@ -156,9 +156,7 @@ class MainActivity : AppCompatActivity() {
             val feeding = findViewById<TextView>(R.id.feedingColumnText)
             val specialInfo = findViewById<TextView>(R.id.specialInfoColumnText)
 
-
-
-            // pull information from database based the CNNs output
+            // pull information from database based on the CNNs output
             var helper = PlantDatabaseHandler (applicationContext)
             var db = helper.openDataBase()
             val cursor = db?.rawQuery("SELECT * From plantInfo", null);
@@ -167,7 +165,7 @@ class MainActivity : AppCompatActivity() {
 
             if(cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.idCol)).equals(plantNameID)){
 
-                descrtiption.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.descriptionCol))
+                description.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.descriptionCol))
                 watering.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.waterCol))
                 light.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.lightCol))
                 temp.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.tempCol))
@@ -181,7 +179,7 @@ class MainActivity : AppCompatActivity() {
 
                 if(cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.idCol)).equals(plantNameID)){
 
-                    descrtiption.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.descriptionCol))
+                    description.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.descriptionCol))
                     watering.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.waterCol))
                     light.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.lightCol))
                     temp.text = cursor.getString(cursor.getColumnIndex(PlantDatabaseHandler.tempCol))

@@ -8,10 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import java.io.FileOutputStream
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 
 class PlantDatabaseHandler (context:Context): SQLiteOpenHelper(context, "plantInformation.db", null, 1){
+
     var dbName = "plantInformation.db"
     var dbLocation = context.getDatabasePath(dbName).absolutePath
     private var DataBase: SQLiteDatabase? = null
@@ -35,7 +34,7 @@ class PlantDatabaseHandler (context:Context): SQLiteOpenHelper(context, "plantIn
 
         this.readableDatabase
         try {
-            copydatabase()
+            copyDataBase()
         } catch (e: IOException) {
             throw Error("Error copying database")
         }
@@ -45,22 +44,22 @@ class PlantDatabaseHandler (context:Context): SQLiteOpenHelper(context, "plantIn
         return DataBase
     }
 
+    //Creates a copy of the database from the assets file, to be later used
     @Throws(IOException::class)
-    private fun copydatabase() {
+    private fun copyDataBase() {
 
-        val `is` = context.assets.open(dbName)
-        val os = FileOutputStream(dbLocation)
-
+        val inputStream = context.assets.open(dbName)
+        val databaseOututStream = FileOutputStream(dbLocation)
         val buffer = ByteArray(1024)
-        while (`is`.read(buffer) > 0) {
-            os.write(buffer)
-            Log.d("#DB", "writing>>")
+
+        while ( inputStream.read(buffer) > 0) {
+            databaseOututStream.write(buffer)
         }
 
-        os.flush()
-        os.close()
-        `is`.close()
-        Log.d("#DB", "completed..")
+        databaseOututStream.flush()
+        databaseOututStream.close()
+        inputStream.close()
+
     }
 
     fun getPlantInforFromName(db: SQLiteDatabase?): Cursor? {

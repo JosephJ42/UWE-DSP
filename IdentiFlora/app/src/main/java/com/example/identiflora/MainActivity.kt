@@ -29,6 +29,7 @@ private lateinit var plantPhotoFile: File
 private const val fileName ="plant.jpg"
 
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //Opens Camera on button tap
+    //Open camera on button tap
     fun openCamera(view: View) {
 
         plantPhotoFile = getPhotoFile(fileName)
@@ -53,12 +54,12 @@ class MainActivity : AppCompatActivity() {
             try {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
             } catch (e: ActivityNotFoundException) {
-                // display error state to the user
+
             }
         }
     }
 
-    //gets picture from users file
+    //Get picture from users file
     private fun getPhotoFile(fileName: String): File {
         val storageLocation = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(fileName,".jpg", storageLocation)
@@ -82,24 +83,6 @@ class MainActivity : AppCompatActivity() {
 
         // Releases model resources if no longer used.
         model.close()
-
-
-
-        //val CNNmodel = model.newInstance(this)
-
-        // Creates inputs for reference.
-        //val image = TensorImage.fromBitmap(takenImage)
-
-        // Runs model inference and gets result.
-        //val outputs = CNNmodel.process(image)
-        //val probability = outputs.probabilityAsCategoryList.apply { sortByDescending { it.score } }.elementAt(0)
-
-
-        // gets plants label/id from output
-        //var plantLabel = probability.label
-
-        // Releases model resources if no longer used.
-        //model.close()
 
         return plantLabel
     }
@@ -189,8 +172,6 @@ class MainActivity : AppCompatActivity() {
                     break
                 }
             }
-
-            //cursor.close()
 
         }
     }

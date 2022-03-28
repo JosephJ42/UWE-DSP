@@ -44,30 +44,30 @@ class PlantDatabaseHandler (context:Context): SQLiteOpenHelper(context, "plantIn
         return DataBase
     }
 
-    //Creates a copy of the database from the assets file, to be later used
+    //Creates a copy in memory of the database from the assets file
     @Throws(IOException::class)
     private fun copyDataBase() {
 
         val inputStream = context.assets.open(dbName)
-        val databaseOututStream = FileOutputStream(dbLocation)
+        val databaseOutputStream = FileOutputStream(dbLocation)
         val buffer = ByteArray(1024)
 
         while ( inputStream.read(buffer) > 0) {
-            databaseOututStream.write(buffer)
+            databaseOutputStream.write(buffer)
         }
 
-        databaseOututStream.flush()
-        databaseOututStream.close()
+        databaseOutputStream.flush()
+        databaseOutputStream.close()
         inputStream.close()
 
     }
 
-    fun getPlantInforFromName(db: SQLiteDatabase?): Cursor? {
-
-        val db = this.readableDatabase
-        return db.rawQuery("SELECT * From plantInfo", null)
-
-    }
+//    fun getPlantInforFromName(db: SQLiteDatabase?): Cursor? {
+//
+//        val db = this.readableDatabase
+//        return db.rawQuery("SELECT * From plantInfo", null)
+//
+//    }
 
 
     companion object{

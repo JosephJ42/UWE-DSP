@@ -7,4 +7,6 @@ This folder contains two subfolders, consisting of prototype subdirectoy that co
 This folder contain the Python code used to create the SQLite database, as well as the SQLite database 
 
 ## The Mobile Application
-This folder contains the code for final version of artefact, the IdentiFlora Andriod Application 
+This folder contains the code for final version of artefact, the IdentiFlora Andriod Application which will need to be accessed in Andriod Studio.
+
+

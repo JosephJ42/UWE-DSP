@@ -17,7 +17,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import com.example.identiflora.ml.Model
+import com.example.identiflora.ml.IdentiFloraCNN
 import org.tensorflow.lite.support.image.TensorImage
 import java.io.File
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     // that the CNN believes the image contains.
     private fun getCNNResults(takenImage: Bitmap): String {
 
-        val model = Model.newInstance(this)
+        val model = IdentiFloraCNN.newInstance(this)
 
         // Creates inputs for reference.
         val image = TensorImage.fromBitmap(takenImage)

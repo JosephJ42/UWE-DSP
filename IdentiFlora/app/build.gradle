@@ -33,7 +33,7 @@ android {
         mlModelBinding true
     }
     aaptOptions {
-        noCompress "model.tflite"
+        noCompress "IdentiFloraCNN.tflite"
     }
 
 }

@@ -1,22 +1,12 @@
 #Tensorflow related Imports
 import tensorflow as tf
-from tensorflow.keras.datasets import cifar10
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, BatchNormalization
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.layers import Dense, Dropout, Flatten
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.utils import plot_model
 
 #Misc imports
-import matplotlib.pyplot as plt
-import cv2
-import os
 import numpy as np
-from tqdm import tqdm
-import random
-
 
 #import numpy array data from their files
 

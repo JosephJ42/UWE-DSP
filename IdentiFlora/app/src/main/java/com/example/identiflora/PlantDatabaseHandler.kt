@@ -62,13 +62,6 @@ class PlantDatabaseHandler (context:Context): SQLiteOpenHelper(context, "plantIn
 
     }
 
-//    fun getPlantInforFromName(db: SQLiteDatabase?): Cursor? {
-//
-//        val db = this.readableDatabase
-//        return db.rawQuery("SELECT * From plantInfo", null)
-//
-//    }
-
 
     companion object{
         // here we have defined variables for our database
